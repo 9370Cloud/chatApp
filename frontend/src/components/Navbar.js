@@ -8,12 +8,17 @@ function NavBar() {
     <>
       <Navbar bg="primary" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand onClick={(e) => {
-                  e.stopPropagation();
-                  navigate("/");
-                }}>ChatApp</Navbar.Brand>
+          <Navbar.Brand
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/");
+            }}
+          >
+            ChatApp
+          </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link >
+            {/* me-auto : 왼쪽 정렬 */}
+            <Nav.Link>
               <Button
                 variant="warning"
                 onClick={(e) => {
@@ -24,22 +29,48 @@ function NavBar() {
                 Home
               </Button>{" "}
             </Nav.Link>
-            <Nav.Link >
-              <Button variant="warning" onClick={(e) => {
+            <Nav.Link>
+              <Button
+                variant="warning"
+                onClick={(e) => {
                   e.stopPropagation();
                   navigate("/login");
-                }}>Login</Button>{" "}
+                }}
+              >
+                Login
+              </Button>{" "}
+            </Nav.Link>
+          </Nav>
+          <Nav className="ml-auto">
+            {/* ml-auto : 오른쪽 정렬 */}
+            <Nav.Link>
+              <Button
+                variant="success"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(-1);
+                }}
+              >
+                Prev
+              </Button>{" "}
+            </Nav.Link>
+            <Nav.Link>
+              <Button
+                variant="danger"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(1);
+                }}
+              >
+                Next
+              </Button>{" "}
             </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item >Action</NavDropdown.Item>
-              <NavDropdown.Item >
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item >Something</NavDropdown.Item>
+              <NavDropdown.Item>Action</NavDropdown.Item>
+              <NavDropdown.Item>Another action</NavDropdown.Item>
+              <NavDropdown.Item>Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item >
-                Separated link
-              </NavDropdown.Item>
+              <NavDropdown.Item>Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Container>
