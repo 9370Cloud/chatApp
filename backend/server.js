@@ -1,15 +1,19 @@
 const express = require('express');
-const path = require('path');
 const app = express();
-require('dotenv').config()
-app.use(express.json()); // JSON 데이터 파싱
-app.use(express.urlencoded({ extended: true })); // URL-encoded 데이터 파싱
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 var cors = require('cors');
 app.use(cors());
 
+// 서버 시작
 app.listen(8080, function () {
-  console.log('listening on 8080')
-}); 
+  console.log('listening on 8080');
+});
 
-app.use( '/', require('./routes/User') );
-app.use( '/login', require('./routes/User') );
+// 라우트 설정
+app.use('/sample', require('./routes/Sample') ); // '/sample' 요청이 오면 './routes/Sample' 여기서 처리함 
+app.use('/login', require('./routes/User'));
+
+app.get("/sample2",(req,res)=>{
+  res.send('123123')
+})
