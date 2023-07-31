@@ -1,3 +1,5 @@
+const express = require('express');
+const app = express();
 const router = require("express").Router();
 const connection = require("../db"); // db 연결하기
 
