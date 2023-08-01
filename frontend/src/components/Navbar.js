@@ -18,42 +18,37 @@ function NavBar() {
           </Navbar.Brand>
           <Nav className="me-auto">
             {/* me-auto : 왼쪽 정렬 */}
-            <Nav.Link>
-              <Button
-                variant="warning"
-                onClick={(e) => {
+            <Nav.Link onClick={(e) => {
                   e.stopPropagation();
                   navigate("/");
-                }}
-              >
-                Home
-              </Button>{" "}
+                }}>
+              Home
             </Nav.Link>
-            <Nav.Link>
-              <Button
-                variant="warning"
-                onClick={(e) => {
+            <Nav.Link onClick={(e) => {
                   e.stopPropagation();
                   navigate("/login");
-                }}
-              >
+                }}>
                 Login
-              </Button>{" "}
             </Nav.Link>
-            <Nav.Link>
-              <Button
-                variant="warning"
-                onClick={(e) => {
+            <Nav.Link onClick={(e) => {
                   e.stopPropagation();
                   navigate("/signup");
-                }}
-              >
+                }}>
                 Signup
-              </Button>{" "}
             </Nav.Link>
           </Nav>
+          <Nav>
+          <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="">
+              <NavDropdown.Item>장식용임 ㅋㅋ</NavDropdown.Item>
+              <NavDropdown.Item>Another action</NavDropdown.Item>
+              <NavDropdown.Item>Something</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item>Separated link</NavDropdown.Item>
+            </NavDropdown>
+            </Nav>
           <Nav className="ml-auto">
             {/* ml-auto : 오른쪽 정렬 */}
+            
             <Nav.Link>
               <Button
                 variant="success"
@@ -76,13 +71,6 @@ function NavBar() {
                 Next
               </Button>{" "}
             </Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item>Action</NavDropdown.Item>
-              <NavDropdown.Item>Another action</NavDropdown.Item>
-              <NavDropdown.Item>Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item>Separated link</NavDropdown.Item>
-            </NavDropdown>
           </Nav>
         </Container>
       </Navbar>

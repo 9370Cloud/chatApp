@@ -55,19 +55,19 @@ function Signup() {
       className="login-wrapper mt-5"
       style={{ width: "400px", height: "350px" }}
     >
-      <h2>Signup</h2>
-      {errorMessage && <div style={{ color: "red" }}>{errorMessage}</div>}{" "}
+      <h2 className="mb-2">Signup</h2>
+      {errorMessage && <div style={{ color: "red", fontSize: "17px" }}>{errorMessage}</div>}{" "}
       {/* 에러 메시지 출력 */}
-      <form onSubmit={handleSubmit}>
-        <div className="m-2">
+      <form onSubmit={handleSubmit} className="mt-3">
+        <div className="mb-2">
           <input
             type="text"
-            placeholder="사용자명"
+            placeholder="아이디"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="mb-2">
+        <div className="">
           <input
             type="password"
             placeholder="비밀번호"
@@ -75,12 +75,11 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button variant="danger" type="submit">
+        <Button variant="danger" type="submit" className="m-2">
           회원가입
         </Button>
-        <p style={{color: 'green'}}>아이디 6~15 글자. 영어 숫자 가능.</p>
-        <p style={{color: 'tomato'}}>비번 8~20 글자. 영어랑 숫자 둘 다 써야돼용.</p>
-        <p style={{color: 'tomato'}}> ! @ ^ & 사용가능</p>
+        <p style={{color: 'green', fontSize: '14px'}} className="mt-1 mb-3">아이디 6~15 글자. 영어 숫자 가능.</p>
+        <p style={{color: 'brown', fontSize: '13px'}}>비번 8~20 글자. 영어랑 숫자 둘 다 써야돼용. ! @ ^ & 사용가능</p>
         <p></p>
       </form>
     </Container>
