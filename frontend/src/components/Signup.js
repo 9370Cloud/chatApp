@@ -1,8 +1,7 @@
 /* eslint-disable */
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Button, Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -20,6 +19,15 @@ function Signup() {
 
       if (password.length < 8 || password.length > 20) {
         return setErrorMessage("비밀번호는 8자 이상 20자 이하로 해조잉");
+      }
+
+      // 하나 이상의 영어 문자와 하나 이상의 숫자가 들어가 있는지를 확인하는 정규 표현식을 사용합니다.
+      const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d).+$/;
+
+      if (!passwordPattern.test(password)) {
+        return setErrorMessage(
+          "비번은 최소 하나의 영어와 하나의 숫자를 포함해야 돼염"
+        );
       }
 
       const response = await axios.post("http://localhost:8080/signup", {
@@ -70,6 +78,10 @@ function Signup() {
         <Button variant="danger" type="submit">
           회원가입
         </Button>
+        <p style={{color: 'green'}}>아이디 6~15 글자. 영어 숫자 가능.</p>
+        <p style={{color: 'tomato'}}>비번 8~20 글자. 영어랑 숫자 둘 다 써야돼용.</p>
+        <p style={{color: 'tomato'}}> ! @ ^ & 사용가능</p>
+        <p></p>
       </form>
     </Container>
   );
