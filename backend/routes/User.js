@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt'); // 비번 암호화
 
 const router = express.Router();
 
-// 라우터에 express-session 및 passport 미들웨어 추가
 const session = require('express-session');
 router.use(
   session({ secret: "비밀코드", resave: true, saveUninitialized: false })
@@ -14,10 +13,16 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
+const validUsernameCharacters = /^[a-zA-Z0-9]+$/; // 아이디에 입력 가능한 문자 : 숫자랑 영어 대소문자
+const validPasswordCharacters = /^[a-zA-Z0-9!@^&]+$/; // 비번에 입력 가능한 문자 : 숫자 영어 대소문자, ! @ ^ &
+
 router.post("/signup",(req,res)=>{
     console.log(req.body.username +', '+ req.body.password);
-    if (!username || !password) {
+    if (!req.body.username || !req.body.password) {
       return res.status(400).json({ message: '공백 안 돼용 히히' });
+    }
+    if (!validUsernameCharacters.test(req.body.username) || !validPasswordCharacters.test(req.body.password)) {
+      return res.status(400).json({ message: '그거 못써영' });
     }
     const sql = 'SELECT * FROM user WHERE id = ?;';
     connection.query(sql, [req.body.username], async (err, results) => {
@@ -47,7 +52,6 @@ router.post("/signup",(req,res)=>{
     });
 });
 
-// 로그인 시 비밀번호 암호화 및 비교
 passport.use(
   new LocalStrategy(
     {
