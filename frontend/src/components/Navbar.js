@@ -56,7 +56,7 @@ function NavBar() {
             </Nav.Link>
             <Nav.Link>
               <Button
-                variant="danger"
+                variant="success"
                 onClick={(e) => {
                   e.stopPropagation();
                   navigate(1);

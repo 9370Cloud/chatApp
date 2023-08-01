@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavBar } from "./components/Navbar"
+import { Login } from "./components/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<대문 />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={ <div>Not Found 404 ㅋㅋㅋ</div> } />
       </Routes>
     </div>
@@ -28,8 +30,8 @@ function 대문() {
         <Button
           variant="danger"
           onClick={() => {
-            axios.get("http://localhost:8080/").then((결과) => {
-              console.log(결과);
+            axios.get("http://localhost:8080/test").then((결과) => {
+              console.log(결과.data);
             });
           }}
         >
