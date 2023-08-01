@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const connection = require("../db"); // 데이터베이스 연결
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'); // 비번 암호화
 
 const router = express.Router();
 
@@ -14,9 +14,11 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
-// 회원가입 시 비밀번호 암호화 및 데이터베이스 저장
 router.post("/signup",(req,res)=>{
     console.log(req.body.username +', '+ req.body.password);
+    if (!username || !password) {
+      return res.status(400).json({ message: '공백 안 돼용 히히' });
+    }
     const sql = 'SELECT * FROM user WHERE id = ?;';
     connection.query(sql, [req.body.username], async (err, results) => {
       if (err) {
