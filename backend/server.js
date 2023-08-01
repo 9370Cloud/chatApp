@@ -13,7 +13,7 @@ app.listen(8080, function () {
 
 // 예제 코드 : 요청, 응답 + 데이터베이스 연결
 app.get("/test",(req,res)=>{
-  const sql = "SELECT id FROM user";
+  const sql = "SELECT id, pw FROM user";
   connection.query(sql, function (err, rows) {
     if (err) {
       console.error("Error executing SQL query:", err);
