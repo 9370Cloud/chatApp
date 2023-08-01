@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavBar } from "./components/Navbar"
 import { Login } from "./components/Login";
+import { Signup } from "./components/Signup";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<대문 />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={ <div>Not Found 404 ㅋㅋㅋ</div> } />
       </Routes>
     </div>

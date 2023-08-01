@@ -58,4 +58,15 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
   res.send("로그인했어용");
 });
 
+router.post("/signup",(req,res)=>{
+    console.log(req.body.username + req.body.password)
+    const sql = 'SELECT * FROM user WHERE id = ?;';
+    connection.query(sql,[req.body.username],(err, results)=>{
+        if (results.length !== 0)
+        {
+            res.send('아이디 중복이에영')
+        }
+    })
+})
+
 module.exports = router;

@@ -40,6 +40,17 @@ function NavBar() {
                 Login
               </Button>{" "}
             </Nav.Link>
+            <Nav.Link>
+              <Button
+                variant="warning"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate("/signup");
+                }}
+              >
+                Signup
+              </Button>{" "}
+            </Nav.Link>
           </Nav>
           <Nav className="ml-auto">
             {/* ml-auto : 오른쪽 정렬 */}
