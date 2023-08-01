@@ -59,12 +59,17 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
 });
 
 router.post("/signup",(req,res)=>{
-    console.log(req.body.username + req.body.password)
+    console.log(req.body.username +', '+ req.body.password)
     const sql = 'SELECT * FROM user WHERE id = ?;';
-    connection.query(sql,[req.body.username],(err, results)=>{
+    connection.query(sql,[req.body.username],function(err, results){
         if (results.length !== 0)
         {
-            res.send('아이디 중복이에영')
+          res.send('아이디 중복이에영')
+        } else {
+          const sql2 = 'INSERT INTO user VALUES (?,?);';
+          connection.query(sql2, [req.body.username, req.body.password], (err, results)=>{
+            res.send('성공했어염')
+          })
         }
     })
 })
