@@ -92,6 +92,7 @@ function Signup() {
         <ReCAPTCHA
           sitekey={REACT_APP_RECAPTCHA_SITE_KEY}
           onChange={handleRecaptchaChange}
+          className="d-flex justify-content-center"
         />
         <Button variant="danger" type="submit" className="m-2">
           회원가입
