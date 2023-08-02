@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
+import REACT_APP_RECAPTCHA_SITE_KEY from "./sitekey";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -67,7 +68,9 @@ function Signup() {
       style={{ width: "400px", height: "350px" }}
     >
       <h2 className="mb-2">Signup</h2>
-      {errorMessage && <div style={{ color: "red", fontSize: "17px" }}>{errorMessage}</div>}{" "}
+      {errorMessage && (
+        <div style={{ color: "red", fontSize: "17px" }}>{errorMessage}</div>
+      )}{" "}
       {/* 에러 메시지 출력 */}
       <form onSubmit={handleSubmit} className="mt-3">
         <div className="mb-2">
@@ -78,7 +81,7 @@ function Signup() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="">
+        <div className="mb-3">
           <input
             type="password"
             placeholder="비밀번호"
@@ -87,14 +90,18 @@ function Signup() {
           />
         </div>
         <ReCAPTCHA
-          sitekey="비밀임ㅋㅋ"
+          sitekey={REACT_APP_RECAPTCHA_SITE_KEY}
           onChange={handleRecaptchaChange}
         />
         <Button variant="danger" type="submit" className="m-2">
           회원가입
         </Button>
-        <p style={{color: 'green', fontSize: '14px'}} className="mt-1 mb-3">아이디 6~15 글자. 영어 숫자 가능.</p>
-        <p style={{color: 'brown', fontSize: '13px'}}>비번 8~20 글자. 영어랑 숫자 둘 다 써야돼용. ! @ ^ & 사용가능</p>
+        <p style={{ color: "green", fontSize: "14px" }} className="mt-1 mb-3">
+          아이디 6~15 글자. 영어 숫자 가능.
+        </p>
+        <p style={{ color: "brown", fontSize: "13px" }}>
+          비번 8~20 글자. 영어랑 숫자 둘 다 써야돼용. ! @ ^ & 사용가능
+        </p>
         <p></p>
       </form>
     </Container>
