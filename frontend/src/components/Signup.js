@@ -30,7 +30,7 @@ function Signup() {
       }
 
       if (!recaptchaToken) {
-        return setErrorMessage("로봇임?");
+        return setErrorMessage("님 로봇임?");
       }
 
       // 하나 이상의 영어 문자와 하나 이상의 숫자가 들어가 있는지를 확인하는 정규 표현식을 사용합니다.
@@ -38,7 +38,7 @@ function Signup() {
 
       if (!passwordPattern.test(password)) {
         return setErrorMessage(
-          "비번은 최소 하나의 영어와 하나의 숫자를 포함해야 합니다"
+          "비번 영어 숫자 둘 다 쓰세용"
         );
       }
 
