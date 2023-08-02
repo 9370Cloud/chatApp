@@ -2,11 +2,18 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, Container } from "react-bootstrap";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [recaptchaToken, setRecaptchaToken] = useState(""); // 최상위 범위로 이동
   const [errorMessage, setErrorMessage] = useState("");
+
+  // handleRecaptchaChange 함수를 handleSubmit 바깥으로 이동
+  const handleRecaptchaChange = (token) => {
+    setRecaptchaToken(token);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,11 +21,15 @@ function Signup() {
     try {
       // 입력 데이터 길이 검증
       if (username.length < 6 || username.length > 15) {
-        return setErrorMessage("아이디는 6자 이상 15자 이하로 해조잉");
+        return setErrorMessage("아이디는 6자 이상 15자 이하로 해주세요");
       }
 
       if (password.length < 8 || password.length > 20) {
-        return setErrorMessage("비밀번호는 8자 이상 20자 이하로 해조잉");
+        return setErrorMessage("비밀번호는 8자 이상 20자 이하로 해주세요");
+      }
+
+      if (!recaptchaToken) {
+        return setErrorMessage("로봇임?");
       }
 
       // 하나 이상의 영어 문자와 하나 이상의 숫자가 들어가 있는지를 확인하는 정규 표현식을 사용합니다.
@@ -26,7 +37,7 @@ function Signup() {
 
       if (!passwordPattern.test(password)) {
         return setErrorMessage(
-          "비번은 최소 하나의 영어와 하나의 숫자를 포함해야 돼염"
+          "비번은 최소 하나의 영어와 하나의 숫자를 포함해야 합니다"
         );
       }
 
@@ -75,6 +86,10 @@ function Signup() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <ReCAPTCHA
+          sitekey="비밀임ㅋㅋ"
+          onChange={handleRecaptchaChange}
+        />
         <Button variant="danger" type="submit" className="m-2">
           회원가입
         </Button>
