@@ -16,6 +16,8 @@ router.use(passport.session());
 const validUsernameCharacters = /^[a-zA-Z0-9]+$/; // 아이디에 입력 가능한 문자 : 숫자랑 영어 대소문자
 const validPasswordCharacters = /^[a-zA-Z0-9!@^&]+$/; // 비번에 입력 가능한 문자 : 숫자 영어 대소문자, ! @ ^ &
 
+
+// 회원가입 요청 처리 
 router.post("/signup",(req,res)=>{
     console.log(req.body.username +', '+ req.body.password);
     if (!req.body.username || !req.body.password) {
