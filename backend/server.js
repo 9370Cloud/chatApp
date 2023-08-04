@@ -28,3 +28,6 @@ app.get("/test",(req,res)=>{
 // User.js에서 라우터 가져오기
 const userRouter = require('./routes/User');
 app.use(userRouter);
+
+const chatRouter = require('./routes/Chat');
+app.use(chatRouter);

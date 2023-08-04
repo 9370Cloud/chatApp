@@ -10,6 +10,7 @@ import { NavBar } from "./components/Navbar"
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
 
+
 function App() {
   return (
     <div className="App">
@@ -38,6 +39,20 @@ function 대문() {
           }}
         >
           Test
+        </Button>{" "}
+        <Button
+          variant="danger"
+          onClick={() => {
+            const jwtToken = document.cookie.split('; ').find(cookie => cookie.startsWith('jwt=')).split('=')[1]; // 쿠키 스토리지에서 jwtToken 값을 가져옴
+            console.log(jwtToken)
+            axios.get("http://localhost:8080/chat", {headers: {
+              Authorization: `Bearer ${jwtToken}`
+            }}).then((결과) => {
+              console.log(결과.data);
+            });
+          }}
+        >
+          Test2
         </Button>{" "}
       </header>
     </div>

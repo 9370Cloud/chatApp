@@ -112,15 +112,4 @@ router.post("/login", passport.authenticate("local"), function (req, res) {
 // Passport.js와 같은 라이브러리에서는 내부적으로 Prepared Statement를 사용하여 SQL Injection을 방지하고 있습니다.
 // 다만, SQL Injection에 대한 인식과 주의는 여전히 필요합니다.
 
-// 로그인 여부를 확인하는 미들웨어. 요청.user : session을 통해 인증된 사용자의 정보를 담고있는 객체
-function 로그인했니(요청, 응답, next) {
-  if (요청.user) {
-    next();
-  } else {
-    응답.send("로그인 안 하셨는데요?");
-  }
-}
-
-router.use(로그인했니);
-
 module.exports = router;
