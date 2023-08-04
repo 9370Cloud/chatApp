@@ -4,12 +4,16 @@ import axios from "axios";
 import { Button, Container } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 import REACT_APP_RECAPTCHA_SITE_KEY from "./sitekey";
+import { useNavigate } from "react-router-dom";
+
 
 function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [recaptchaToken, setRecaptchaToken] = useState(""); // 최상위 범위로 이동
   const [errorMessage, setErrorMessage] = useState("");
+
+  let navigate = useNavigate();
 
   // handleRecaptchaChange 함수를 handleSubmit 바깥으로 이동
   const handleRecaptchaChange = (token) => {
@@ -49,6 +53,7 @@ function Signup() {
 
       // 회원가입 성공하면?
       console.log(response.data);
+      navigate('/login')
     } catch (error) {
       // 회원가입 실패하면?
       console.error("실패 ㅋㅋ ", error);
@@ -71,7 +76,7 @@ function Signup() {
       {errorMessage && (
         <div style={{ color: "red", fontSize: "17px" }}>{errorMessage}</div>
       )}{" "}
-      {/* 에러 메시지 출력 */}
+      {/* errorMessage 변수가 null이 아닌 경우(즉, 에러 메시지가 존재하는 경우)에만 && 연산자 뒤의 JSX 코드가 실행됩니다. */}
       <form onSubmit={handleSubmit} className="mt-3">
         <div className="mb-2">
           <input
