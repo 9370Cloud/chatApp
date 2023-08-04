@@ -4,6 +4,10 @@ import { Routes, Route, Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
   let navigate = useNavigate();
+  function deleteCookie(name) {
+    document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.localhost;";
+}
+
   return (
     <>
       <Navbar bg="primary" data-bs-theme="dark">
@@ -18,37 +22,52 @@ function NavBar() {
           </Navbar.Brand>
           <Nav className="me-auto">
             {/* me-auto : 왼쪽 정렬 */}
-            <Nav.Link onClick={(e) => {
-                  e.stopPropagation();
-                  navigate("/");
-                }}>
+            <Nav.Link
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("/");
+              }}
+            >
               Home
             </Nav.Link>
-            <Nav.Link onClick={(e) => {
-                  e.stopPropagation();
-                  navigate("/login");
-                }}>
-                Login
+            <Nav.Link
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("/login");
+              }}
+            >
+              Login
             </Nav.Link>
-            <Nav.Link onClick={(e) => {
-                  e.stopPropagation();
-                  navigate("/signup");
-                }}>
-                Signup
+            <Nav.Link
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteCookie("jwt")
+                navigate("/");
+              }}
+            >
+              Logout
+            </Nav.Link>
+            <Nav.Link
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("/signup");
+              }}
+            >
+              Signup
             </Nav.Link>
           </Nav>
           <Nav>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="">
+            <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="">
               <NavDropdown.Item>장식용임 ㅋㅋ</NavDropdown.Item>
               <NavDropdown.Item>Another action</NavDropdown.Item>
               <NavDropdown.Item>Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>Separated link</NavDropdown.Item>
             </NavDropdown>
-            </Nav>
+          </Nav>
           <Nav className="ml-auto">
             {/* ml-auto : 오른쪽 정렬 */}
-            
+
             <Nav.Link>
               <Button
                 variant="success"
