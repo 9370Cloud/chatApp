@@ -43,6 +43,7 @@ function NavBar() {
                 e.stopPropagation();
                 deleteCookie("jwt")
                 navigate("/");
+                window.location.reload();
               }}
             >
               Logout
