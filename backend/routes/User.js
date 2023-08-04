@@ -4,6 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const connection = require("../db"); // 데이터베이스 연결
 const bcrypt = require('bcrypt'); // 비번 암호화
 const jwt = require('jsonwebtoken'); // jwt
+require('dotenv').config();
 
 const router = express.Router();
 
@@ -103,7 +104,7 @@ passport.deserializeUser(function (아이디, done) {
 
 // 로그인 요청 핸들러
 router.post("/login", passport.authenticate("local"), function (req, res) {
-  const token = jwt.sign({ id: req.body.id }, "비밀키", { expiresIn: "1h" }); // 비밀키는 본인이 설정한 값으로 대체해야 합니다.
+  const token = jwt.sign({ id: req.body.id }, process.env.DB_KEY, { expiresIn: "1h" }); // 비밀키는 본인이 설정한 값으로 대체해야 합니다.
   res.status(200).send({ token: token, expiresIn: 3600, message: "로그인했어용" });
   console.log(token)
 });

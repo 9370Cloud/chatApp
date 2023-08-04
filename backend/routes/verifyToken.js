@@ -1,5 +1,6 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const secretKey = '비밀키'; // JWT를 생성할 때 사용한 비밀키
+const secretKey = process.env.DB_KEY; // JWT를 생성할 때 사용한 비밀키
 
 const 로그인했니 = (req, res, next) => {
   const token = req.header('Authorization');
