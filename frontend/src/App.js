@@ -9,6 +9,8 @@ import axios from "axios";
 import { NavBar } from "./components/Navbar"
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
+import {ChatList} from "./components/ChatList";
+import { CreateChatRoom } from "./components/CreateChatRoom";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
         <Route path="/" element={<대문 />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/list" element={<ChatList/>} />
+        <Route path="/createchatroom" element={<CreateChatRoom/>} />
         <Route path="*" element={ <div>Not Found 404 ㅋㅋㅋ</div> } />
       </Routes>
     </div>

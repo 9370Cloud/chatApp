@@ -31,3 +31,6 @@ app.use(userRouter);
 
 const chatRouter = require('./routes/Chat');
 app.use(chatRouter);
+
+const chatRouter2 = require('./routes/ChatList');
+app.use(chatRouter2);
