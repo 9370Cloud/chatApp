@@ -10,15 +10,12 @@ const CreateChatRoom = () => {
     e.preventDefault();
     console.log(`Chat Room Name: ${chatRoomName}`);
     console.log(`Invitees: ${invitee}`);
-    const jwtToken = document.cookie
-    .split("; ")
-    .find((cookie) => cookie.startsWith("jwt="))
-    .split("=")[1]; // 쿠키 스토리지에서 jwtToken 값을 가져옴
-    axios.post('createchatroom', { room_name: chatRoomName, user_id: invitee }, {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    })
+    const username = document.cookie
+      .split("; ")
+      .find((cookie) => cookie.startsWith("username="))
+      .split("=")[1];
+    console.log(`만든사람: ${username}`);  
+    axios.post('createchatroom', { room_name: chatRoomName, user_id: invitee, username: username })
       .then((response) => {
         // 요청이 성공한 경우
         console.log('채팅방 생성 성공:', response.data);

@@ -27,6 +27,7 @@ function Login() {
 
       // 토큰을 클라이언트 쿠키에 저장합니다.
       document.cookie = `jwt=${token}; path=/; domain=localhost; max-age=${expiresIn}`;
+      document.cookie = `username=${username}; path=/; domain=localhost; max-age=${expiresIn}`;
       navigate("/");
     } catch (error) {
       // 로그인에 실패한 경우 처리

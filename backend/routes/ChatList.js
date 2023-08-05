@@ -12,7 +12,7 @@ router.get('/createchatroom', 로그인했니, (req, res) => {
   });
 
 router.post('/createchatroom', (req, res) => {
-    res.send(1)
+    res.send(req.body.username + req.body.user_id + req.body.room_name)
   });
 
 module.exports = router;
