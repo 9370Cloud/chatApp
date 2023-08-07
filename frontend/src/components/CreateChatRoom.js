@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateChatRoom = () => {
   const [chatRoomName, setChatRoomName] = useState('');
   const [invitee, setInvitee] = useState('');
+  let navigate = useNavigate();
 
   const handleCreateChatRoom = (e) => {
     e.preventDefault();
@@ -18,8 +20,11 @@ const CreateChatRoom = () => {
     axios.post('createchatroom', { room_name: chatRoomName, user_id: invitee, username: username })
       .then((response) => {
         // 요청이 성공한 경우
-        console.log('채팅방 생성 성공:', response.data);
+        console.log('채팅방 생성 성공:'+ response.data);
         // 추가로 할 작업이 있다면 여기에 작성하세요.
+        if (response.data === "채팅방 만들기 성공했도르") {
+          navigate('/list'); // '/list' 경로로 페이지 이동
+        }
       })
       .catch((error) => {
         // 요청이 실패한 경우
